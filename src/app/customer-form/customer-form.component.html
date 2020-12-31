@@ -5,8 +5,10 @@
       <md-card-content>
         <md-input-container>
           <!-- ngModel -> faz o two way databind para essa propriedade 
+               É necessário criar uma variável de template para poder usar -> #name
                Ao usar este metodo, o input deve ter sempre um nome
                Também não é necessário utilizar a propriedade value, pois o ngModel sobrescreve este valor
+               Ao usarmos essa abordagem, o Angular irá validar com base nas validações padrão do Html
           -->
           <input name="customer" mdInput placeholder="Customer Name" [(ngModel)]="customer.name" required
             #name="ngModel">
