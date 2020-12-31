@@ -26,6 +26,8 @@
         <md-input-container>
           <input name="phone" mdInput type="tel" placeholder="Phone" [(ngModel)]="customer.phone" required phone
             #phone="ngModel">
+
+          <!-- aqui é buscado por erros de validação do tipo "phone" -->
           <md-error *ngIf="phone.touched && phone.errors?.phone">
             Not a valid phone number
           </md-error>
