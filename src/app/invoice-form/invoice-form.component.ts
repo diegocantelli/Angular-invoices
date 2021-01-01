@@ -13,12 +13,15 @@ import { HoursValidator } from '../validators/hours.validator';
   styleUrls: ['./invoice-form.component.css']
 })
 export class InvoiceFormComponent implements OnInit {
+  //define uma propriedade do tipo FormGroup, que irá armazenar o form depois de criado
   invoiceForm: FormGroup;
+
   invoice: Invoice;
   customer: Customer;
   customers: Customer[];
   total = 0;
 
+  //formbuilder trata-se de um helper na hora de criar um formulário reativo
   constructor(
     private loadingService: TdLoadingService,
     private invoicesService: InvoicesService,
@@ -28,17 +31,18 @@ export class InvoiceFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute) {
 
-      this.invoiceForm = this.formBuilder.group({
-        id: [''],
-        service: ['', Validators.required],
-        customerId: ['', Validators.required],
-        rate: ['', Validators.required],
-        hours: ['', [Validators.required, HoursValidator]],
-        date: ['', Validators.required],
-        paid: ['']
-      });
+    //group -> retorna um formulário com base nos campos definidos  
+    this.invoiceForm = this.formBuilder.group({
+      id: [''],
+      service: ['', Validators.required],
+      customerId: ['', Validators.required],
+      rate: ['', Validators.required],
+      hours: ['', [Validators.required, HoursValidator]],
+      date: ['', Validators.required],
+      paid: ['']
+    });
 
-    }
+  }
 
   ngOnInit() {
     this.loadingService.register('invoice');
@@ -52,7 +56,9 @@ export class InvoiceFormComponent implements OnInit {
     this.route.params.map((params: Params) => params.invoiceId).subscribe(invoiceId => {
       if (invoiceId) {
         this.invoicesService.get<Invoice>(invoiceId).subscribe(invoice => {
+          //atualiza o formulário com os dados vindos da api, que estão armazenados dentro de invoice
           this.invoiceForm.setValue(invoice);
+
           this.invoice = invoice;
           this.loadingService.resolve('invoice');
         });

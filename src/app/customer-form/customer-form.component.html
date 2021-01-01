@@ -1,4 +1,7 @@
 <div *tdLoading="'customer'">
+  <!-- cria uma variável de template e atribui o valor de ngForm a ela 
+      através de ngForm é possível validar o formulário
+  -->
   <form *ngIf="customer" #form="ngForm" (ngSubmit)="save()">
     <md-card>
       <md-card-header>Edit Customer</md-card-header>
@@ -36,6 +39,7 @@
       <md-card-actions>
         <button type="button" md-button (click)="delete()" *ngIf="customer.id">Delete</button>
         <button type="button" md-button (click)="cancel()">Cancel</button>
+        <!-- [disabled]="form.invalid" -> não permite salvar caso os controles do formulário estejam inválidos -->
         <button type="submit" md-raised-button color="primary" [disabled]="form.invalid">Save</button>
       </md-card-actions>
     </md-card>
