@@ -68,7 +68,9 @@ export class InvoiceFormComponent implements OnInit {
       }
     });
 
+    //combineLatest -> recebe duas observables e as mescla em uma só
     Observable.combineLatest(
+      //escutando mudanças nos campos do formulário através de valueChanges
       this.invoiceForm.get('rate').valueChanges,
       this.invoiceForm.get('hours').valueChanges
     ).subscribe(([rate = 0, hours = 0]) => {
