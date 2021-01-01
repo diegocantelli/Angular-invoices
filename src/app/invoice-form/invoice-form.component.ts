@@ -37,6 +37,7 @@ export class InvoiceFormComponent implements OnInit {
       service: ['', Validators.required],
       customerId: ['', Validators.required],
       rate: ['', Validators.required],
+      //utilizando o validador de horas criado
       hours: ['', [Validators.required, HoursValidator]],
       date: ['', Validators.required],
       paid: ['']
