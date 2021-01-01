@@ -1,9 +1,11 @@
 <div *tdLoading="'invoice'">
+  <!-- formGroup -> link o formulário html com o formulário definido na controller -->
   <form *ngIf="invoice" [formGroup]="invoiceForm" (ngSubmit)="save()">
     <md-card>
       <md-card-header>Edit Invoice</md-card-header>
       <md-card-content>
         <md-input-container>
+          <!-- formControlName -> linka o elemento html com o controle do formulário definido na controller -->
           <input name="service" mdInput type="text" placeholder="Service" formControlName="service">
         </md-input-container>
         <md-input-container>
